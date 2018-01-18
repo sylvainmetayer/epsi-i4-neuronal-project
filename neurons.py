@@ -27,7 +27,14 @@ class Neuron:
         return somme
 
     def output(self, values):
+        # print(self.weight)
         return self._activate(values)
+
+    def backup(self, file):
+        pass
+
+    def load(self, file):
+        pass
 
 
 class Network:
@@ -73,27 +80,35 @@ class Network:
 
 
 class Training:
-    def __init__(self, expected, values):
+    def __init__(self, expected, values, nb_run):
         self.expected = bin(int(expected, 2))
         self.network = Network(3, len(values))
-        self.taux = 10
+        self.taux = 1
+        self.nb_run = nb_run
 
     def run(self, values):
-        for i in range(100):
-            self._single_run(values, self.taux)
+        for i in range(self.nb_run):
+            # print("Iteration {}".format(str(i)))
+            if not self._single_run(values, self.taux, (self.nb_run - 1 == i), i) and self.taux >= 0.001:
+                self.taux -= 0.0001
+            else:
+                # We found it, no need to continue
+                break
 
-    def _single_run(self, values, taux):
+    def _single_run(self, values, taux, last_run, current_run):
         result = self.network.run(values, self.expected, taux)
-        print("----")
-        print("\tResult from training : " + str(result))
-        print("\tExpected result : " + str(self.expected))
-        print("\tHurray ! " if self.expected == result else "\tBooooh !")
-        print("----")
+        if last_run or self.expected == result:
+            print("----")
+            print("\tResult from training after {} times  : {} ".format(str(current_run), str(result)))
+            print("\tExpected result : " + str(self.expected))
+            print("\tHurray ! " if self.expected == result else "\tBooooh !")
+            print("----")
+        return self.expected == result
 
 
 if __name__ == '__main__':
     json_object = json.load(open("inputs.json"))
     for expected in json_object:
         item_values = json_object[expected]
-        training = Training(expected, item_values)
+        training = Training(expected, item_values, 1000)
         training.run(item_values)
