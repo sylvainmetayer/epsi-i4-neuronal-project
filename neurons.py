@@ -80,15 +80,21 @@ class Training:
 
         for i in range(nb_run):
             random.shuffle(all_letter_indices)
+            self.workout(all_letter_indices)
 
-            for expected in all_letter_indices:
-                letter = self.letters[expected]
-                is_success, training_result = self._single_run(letter, expected)
-                if not is_success:
-                    self.network.update_network(training_result, expected, self.taux, letter)
+            
 
             if self.taux > 0.01:
                 self.taux -= 0.01
+    def workout(self, all_letter_indices):
+        modifWeight = 0;
+        for expected in all_letter_indices:
+                letter = self.letters[expected]
+                is_success, training_result = self._single_run(letter, expected)
+                if not is_success:
+                    modifWeight = modifWeight + self.network.calculate_delta(training_result, expected)
+                    #self.network.update_network(training_result, expected, self.taux, letter)
+        print(modifWeight)
 
     def final_test(self):
         for value in self.letters:
