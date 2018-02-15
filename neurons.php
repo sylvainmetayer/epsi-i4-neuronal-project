@@ -20,5 +20,6 @@ if(isset($argv) && !empty($argv[1])){
 
 $trainnig->test($letters, $network);
 
+$network->print();
 //var_dump($letters);
 
