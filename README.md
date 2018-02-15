@@ -33,3 +33,11 @@ Finaly, you can reload php server
 `$ php -S localhost:8000  -t ./tools/`
 
 and go to "http://localhost:8000/test.php"
+
+# Deploy
+
+```bash
+cp .env.bash.sample .env.bash
+vim .env.bash # Fill values
+composer deploy
+```

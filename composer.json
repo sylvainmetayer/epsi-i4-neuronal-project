@@ -25,7 +25,10 @@
 	"scripts": {
 		"test": [
 			"phpunit"
-		]
+		],
+        "deploy": [
+            "./deploy.sh"
+        ]
 	},
 	"autoload": {
 		"psr-4": {

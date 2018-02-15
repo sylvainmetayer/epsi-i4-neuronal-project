@@ -161,5 +161,6 @@ network.save
 /tools/gameset
 /tools/img
 
+.env.bash
 
 # End of https://www.gitignore.io/api/intellij
