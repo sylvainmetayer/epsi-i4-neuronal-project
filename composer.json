@@ -16,7 +16,11 @@
 		{
 			"name": "oRiamn",
 			"email": "durade.romain@gmail.com"
-		}
+		},
+        {
+            "name": "Sylvain",
+            "email": "contact@sylvainmetayer.fr"
+        }
 	],
 	"scripts": {
 		"test": [
