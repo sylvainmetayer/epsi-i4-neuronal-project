@@ -3,11 +3,11 @@
 if [ ! -f ./.env.bash ]; then
     echo ".env.bash not found. Exit"
     exit 4
-else 
+else
     source ./.env.bash
-fi 
+fi
 
-if [[ ! $(git status --porcelain) ]]; then
+if [[ $(git status --porcelain) ]]; then
     echo "Git status indicates that their is some modifications on this repository."
     echo "Please commit or stash them before using this script"
     exit 1
@@ -42,7 +42,7 @@ git checkout "$current_branch"
 
 ssh $ssh_details "cd $folder; git pull; composer install"
 
-if [ "$?" -ne 0 ]; then 
+if [ "$?" -ne 0 ]; then
     echo "Deploy failed ! ssh command failed."
     exit 5
 else
