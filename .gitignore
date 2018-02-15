@@ -157,7 +157,7 @@ fabric.properties
 
 /vendor/
 
-/tools/network.save
+network.save
 /tools/gameset
 /tools/img
 

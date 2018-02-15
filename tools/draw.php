@@ -1,10 +1,10 @@
 <?php
 header('Content-Type:text/html; charset=utf-8'); 
-require 'func.inc.php';
-if(file_exists('img')){
-	exec("rm -r img");
+require './api/func.inc.php';
+if(file_exists('./.cache/img')){
+	exec("rm -r ./.cache/img");
 }
-createPaths(["img"]);
+createPaths(["./.cache/img"]);
 ?><!DOCTYPE html>
 <html>
 <head>
@@ -64,8 +64,6 @@ createPaths(["img"]);
 		text-align: center;
 		padding: 5px;
 	}
-
-
 </style>
 <body>
 <div id="editor">
@@ -76,18 +74,18 @@ createPaths(["img"]);
 <div id="result">
 <?php
 
-$letters = array_slice(scandir('./gameset'), 2);
+$letters = array_slice(scandir('./.cache/gameset'), 2);
 
 foreach ($letters as $key => $letter) {
 
 	echo "<div id=\"result-$letter\" class=\"resultcontainer\"><span class=\"letter\">$letter</span>";
 
 
-	$gamesets =  explode("\n", file_get_contents("./gameset/$letter"));
+	$gamesets =  explode("\n", file_get_contents("./.cache/gameset/$letter"));
 
 	foreach ($gamesets as $gameset) {
 		$name = makeImage($gameset);
-		echo "<img src=\"./img/$name.jpg\">";
+		echo "<img src=\"./.cache/img/$name.jpg\">";
 		
 	}
 
@@ -220,7 +218,7 @@ foreach ($letters as $key => $letter) {
 					}
 				}
 			};
-			xhr.open("POST", "save.php", true);
+			xhr.open("POST", "./api/save.php", true);
 			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 			xhr.send("expected="+letterExpected+"&input="+matrix);
 		}

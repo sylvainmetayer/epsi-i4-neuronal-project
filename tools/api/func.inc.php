@@ -33,7 +33,7 @@ function makeImage($str){
 
 	$name = uniqid();
 
-	imagejpeg($img,"img/$name.jpg");
+	imagejpeg($img,__DIR__ . "/../.cache/img/$name.jpg");
 
 	return $name;
 }
