@@ -3,6 +3,7 @@
 namespace NeuralNetwork;
 
 class Example {
+	
 	public $target;
 
 	public $input;

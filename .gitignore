@@ -157,5 +157,9 @@ fabric.properties
 
 /vendor/
 
+/tools/network.save
+/tools/gameset
+/tools/img
+
 
 # End of https://www.gitignore.io/api/intellij

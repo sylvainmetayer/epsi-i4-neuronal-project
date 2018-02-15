@@ -1,7 +1,35 @@
-# epsi-i4-neuronal-project
+## Requirements
 
-Limite : 15/02
+* PHP 7 or later
+* `composer` command (See [Composer Installation](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx))
+* Git
 
 # Run it
 
+## Basic prototype
+
+To run basic prototype (exercise requirement)
+
 `$ php neurons.php`
+
+## Local server tools
+
+### Basic usage
+
+To run the Draw tools, run 
+
+`$ php -S localhost:8000  -t ./tools/`
+
+and go to "http://localhost:8000/draw.php"
+
+Make your dataset with graphical tool.
+
+And type the command below to train the bot with the dataset previously created: 
+
+`$ php ./tools/trainning.php`
+
+Finaly, you can reload php server 
+
+`$ php -S localhost:8000  -t ./tools/`
+
+and go to "http://localhost:8000/test.php"
