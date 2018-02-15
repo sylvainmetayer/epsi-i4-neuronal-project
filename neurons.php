@@ -1,6 +1,11 @@
 <?php
 
-require 'classes.php';
+require 'vendor/autoload.php';
+
+use NeuralNetwork\Network;
+use NeuralNetwork\ExampleSet;
+use NeuralNetwork\Example;
+use NeuralNetwork\Trainnig;
 
 $network = new Network(3,15);
 $examples = new ExampleSet(3, 15);

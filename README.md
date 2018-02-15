@@ -4,4 +4,4 @@ Limite : 15/02
 
 # Run it
 
-`$ php training.php`
+`$ php neurons.php`

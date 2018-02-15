@@ -1,0 +1,43 @@
+{
+	"name": "oRiamn/machine-learning",
+	"description": "Simple PHP implementation of machine learning concept.",
+	"homepage": "https://github.com/oRiamn/machine-learning",
+	"license": "MIT",
+	"version": "0.0.1",
+	"keywords": [
+		"perceptron",
+		"neural network",
+		"artificial intelligence",
+		"machine learning", 
+		"deep learning"
+	],
+	"minimum-stability": "dev",
+	"authors": [
+		{
+			"name": "oRiamn",
+			"email": "durade.romain@gmail.com"
+		}
+	],
+	"scripts": {
+		"test": [
+			"phpunit"
+		]
+	},
+	"autoload": {
+		"psr-4": {
+			"NeuralNetwork\\": "src/NeuralNetwork",
+			"Utils\\": "src/Utils"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"NeuralNetwork\\Tests\\": "tests"
+		}
+	},
+	"require": {
+		"php": "^7"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "^6.5"
+	}
+}
