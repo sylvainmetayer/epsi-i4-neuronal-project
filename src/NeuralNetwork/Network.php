@@ -23,7 +23,7 @@ class Network extends ArrayObj {
 		$ret = "";
 
 		foreach ($this->array as $neuron) {
-			$ret .= strval($neuron->transfert($input));
+			$ret .= $neuron->transfert($input) ? "1":"0";
 		}
 
 		return $ret;

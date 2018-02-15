@@ -23,7 +23,7 @@ class Neuron {
 		});
 	}
 
-	public function transfert($input){
+	public function transfert($input) : bool {
 		$somme = 0;
 		if(count($input) === $this->size){
 			for ($i=0; $i < $this->size; $i++) { 
@@ -31,7 +31,7 @@ class Neuron {
 			}
 		}
 
-		return $somme > $this->threshold ? "1":"0";
+		return $somme > $this->threshold;
 	}
 
 	public function getWeights(){

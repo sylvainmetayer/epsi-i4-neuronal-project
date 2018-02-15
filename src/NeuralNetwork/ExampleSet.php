@@ -3,8 +3,9 @@
 namespace NeuralNetwork;
 
 use \MLException\InconsistentDataException;
+use \Utils\ArrayObj;
 
-class ExampleSet extends \Utils\ArrayObj {
+class ExampleSet extends ArrayObj {
 
 	private $targetSize;
 

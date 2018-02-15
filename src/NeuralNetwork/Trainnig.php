@@ -8,7 +8,7 @@ class Trainnig {
 
 	private $learningRate = 1;
 
-	private $rateStep=0.01;
+	private $rateStep=0.001;
 
 	private $nbSet;
 
@@ -29,17 +29,18 @@ class Trainnig {
 
 		foreach ($network as $i => $neuron) {
 			$newWeights = $neuron->getWeights();
+
 			foreach ($this->examples as $example) {
+
 				$expected = $example->target[$i];
 				$answer = $neuron->transfert($example->input);
 				if($expected!==$answer) {
 
 					$delta = (intval($answer) - intval($expected))*$this->learningRate;
 
-					array_walk($newWeights, function(&$item, $key, $apply) {
-						$item -= $apply['input'][$key]*$apply['delta'];
-					},
-					['input'=>$example->input, 'delta'=>$delta]);
+					array_walk($newWeights, function(&$item, $key) use ($delta, $example) {
+						$item -= $example->input[$key]*$delta;
+					});
 				}
 			}
 
