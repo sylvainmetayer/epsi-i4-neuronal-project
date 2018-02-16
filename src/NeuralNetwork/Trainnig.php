@@ -28,7 +28,9 @@ class Trainnig {
 		}
 	}
 
-	private function runWorkout($network) {
+	public function runWorkout($network) {
+
+		$this->examples->suffle();
 
 		$nbSuccess = 0;
 

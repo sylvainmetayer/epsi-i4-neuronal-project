@@ -8,12 +8,7 @@
 	beStrictAboutChangesToGlobalState="true"
 	enforceTimeLimit="true"
 	mapTestClassNameToCoveredClassName="true"
-	verbose="false"
-	stopOnError="true"
-	stopOnFailure="true"
-	stopOnIncomplete="true"
-	stopOnSkipped="true"
-	stopOnRisky="true"
+	verbose="true"
 	>
 	<testsuite name="PHP Neural network">
 		<directory>tests</directory>

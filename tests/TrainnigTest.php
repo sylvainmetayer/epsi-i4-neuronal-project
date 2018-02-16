@@ -33,7 +33,10 @@ class TrainnigTest extends TestCase {
 		}
 
 		$trainnig = new Trainnig($examples);
-		$trainnig->run($network, 50);
+
+		for ($i=0,  $successRate=0; $i < 100 && $successRate < 100; $i++) {
+			$successRate = $trainnig->runWorkout($network);
+		}
 
 		$fail = false;
 		foreach ($letters as $letter => $input) {

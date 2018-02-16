@@ -43,7 +43,12 @@ echo "\033[32mTrainning begin, please wait ... \033[0m \n";
 
 
 $trainnig = new Trainnig($examples);
-$trainnig->run($network, 1000);
+
+
+for ($i=0,  $successRate=0; $i < 10000; $i++) {
+	$successRate = $trainnig->runWorkout($network);
+}
+
 
 echo "\n\033[32mTrainning is over : \033[0m \n\n";
 
