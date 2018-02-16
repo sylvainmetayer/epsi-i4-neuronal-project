@@ -4,52 +4,64 @@ namespace NeuralNetwork;
 
 class Trainnig {
 
-	private $examples=[];
+	private $examples;
 
 	private $learningRate = 1;
 
-	private $rateStep=0.001;
-
-	private $nbSet;
-
-	private $deltaWeights=[];
+	private $learningRateStep=0.001;
 
 	public function __construct(ExampleSet $examples){
 		$this->examples=$examples;
 	}
 
 	public function run(Network $network, int $max_iterations){
-		for ($i=0; $i < $max_iterations; $i++) { 
+
+		$successRate = 0;
+
+		for ($i=0; $i < $max_iterations && $successRate < 100; $i++) {
+			
 			$this->examples->suffle();
-			$this->runWorkout($network);
+			
+			$successRate = $this->runWorkout($network);
+
+			echo "$successRate % \n";
 		}
 	}
 
-	private function runWorkout($network){
+	private function runWorkout($network) {
+
+		$nbSuccess = 0;
 
 		foreach ($network as $i => $neuron) {
+			
 			$newWeights = $neuron->getWeights();
 
 			foreach ($this->examples as $example) {
 
-				$expected = $example->target[$i];
-				$answer = $neuron->transfert($example->input);
+				$expected = substr($example->getTarget(), $i,1);
+				
+				$answer = $neuron->transfert($example->getInput()) ? "1":"0";;
+				
 				if($expected!==$answer) {
-
 					$delta = (intval($answer) - intval($expected))*$this->learningRate;
 
-					array_walk($newWeights, function(&$item, $key) use ($delta, $example) {
-						$item -= $example->input[$key]*$delta;
+					$input = $example->getInput();
+					array_walk($newWeights, function(&$item, $key) use ($delta, $input) {
+						$item -= $input[$key]*$delta;
 					});
+				} else {
+					$nbSuccess++;
 				}
 			}
 
 			$neuron->setWeights($newWeights);
 		}
 
-		if($this->learningRate > $this->rateStep){
-			$this->learningRate-=$this->rateStep;
+		if($this->learningRate > $this->learningRateStep){
+			$this->learningRate-=$this->learningRateStep;
 		}
+
+		return ($nbSuccess/count($this->examples)*100/count($network));
 	}
 
 	public function test($examples, $network){

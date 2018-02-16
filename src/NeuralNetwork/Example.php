@@ -4,9 +4,9 @@ namespace NeuralNetwork;
 
 class Example {
 	
-	public $target;
+	private $target;
 
-	public $input;
+	private $input;
 
 	public function __construct($target, $input){
 		$this->target = strval($target);

@@ -3,8 +3,8 @@
 namespace Utils;
 
 
-class ArrayObj implements \ArrayAccess, \Iterator {
-	
+class ArrayObj implements \ArrayAccess, \Iterator, \Countable  {
+
 	protected  $array = array();
 	protected $position = 0;
 
@@ -12,6 +12,11 @@ class ArrayObj implements \ArrayAccess, \Iterator {
 		$this->array = $array;
 		$this->position = 0;
 	}
+
+	public function count() {
+		return count($this->array);
+	}
+
 
 	public function suffle(){
 		shuffle($this->array);

@@ -18,8 +18,8 @@ class ExampleSet extends ArrayObj {
 
 	public function offsetSet($offset, $example) {
 		if( $example instanceof Example ){
-			if (strlen($example->target) == $this->targetSize 
-				&& count($example->input) == $this->inputSize){
+			if (strlen($example->getTarget()) == $this->targetSize 
+				&& count($example->getInput()) == $this->inputSize){
 				
 				return parent::offsetSet($offset, $example);
 			} else {
