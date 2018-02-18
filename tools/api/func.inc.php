@@ -1,13 +1,4 @@
 <?php
-mb_internal_encoding('UTF-8');
-function writeUTF8File($filename,$content) { 
-	$f=fopen($filename,"w+"); 
-	# Now UTF-8 - Add byte order mark 
-	//fwrite($f, pack("CCC",0xef,0xbb,0xbf)); 
-	fwrite($f,$content); 
-	fclose($f); 
-} 
-
 function createPaths(array $paths){
 	foreach ($paths as $path) {
 		if(!file_exists($path)){

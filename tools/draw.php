@@ -21,7 +21,7 @@ createPaths(["./.cache/img"]);
 	<div id="editor">
 		<canvas id="c" width="64" height="64"></canvas>
 		<button id="clear">x</button>
-		<input id="cletter" type="text" >
+		<input id="cletter" type="text" maxlength="1">
 	</div>
 	<div id="result">
 	<?php
@@ -80,7 +80,7 @@ createPaths(["./.cache/img"]);
 
 		window.oncontextmenu = function (){
 
-			var letterExpected = letter.value.charAt(0);
+			var letterExpected = letter.value;
 
 			var result = document.getElementById('result-' + letterExpected);
 
@@ -124,6 +124,8 @@ createPaths(["./.cache/img"]);
 						}
 					}
 				};
+
+				console.log(letterExpected);
 				xhr.open("POST", "./api/save.php", true);
 				xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 				xhr.send("expected="+letterExpected+"&input="+matrix);
