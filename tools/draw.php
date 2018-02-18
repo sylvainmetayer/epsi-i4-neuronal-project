@@ -21,7 +21,7 @@ createPaths(["./.cache/img"]);
 	<div id="editor">
 		<canvas id="c" width="64" height="64"></canvas>
 		<button id="clear">x</button>
-		<input id="cletter" type="text" maxlength="1">
+		<input id="cletter" type="text">
 	</div>
 	<div id="result">
 	<?php
@@ -37,7 +37,7 @@ createPaths(["./.cache/img"]);
 
 		foreach ($gamesets as $gameset) {
 			$name = makeImage($gameset);
-			echo "<img src=\"./.cache/img/$name.jpg\">";
+			echo "<img src=\"./.cache/img/$name.jpg\"  data-letter=\"$letter\"onclick=\"deleteDataSet(this)\" >";
 			
 		}
 
@@ -47,6 +47,29 @@ createPaths(["./.cache/img"]);
 	?>
 	</body>
 	<script type="text/javascript">
+		var deleteDataSet = function (img) {
+			var parent = img.parentNode;
+			var index = Array.prototype.indexOf.call(parent.children, img) -1;
+
+			var xhr = getXMLHttpRequest();
+				xhr.onreadystatechange = function() {
+					if (xhr.readyState == 4) {
+						switch (xhr.status) {
+							case 200:
+								parent.removeChild(img);
+								console.log("deleted");
+							break;
+							default:
+								console.log("fail");
+						}
+					}
+				};
+
+			xhr.open("POST", "./api/save.php", true);
+			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+			xhr.send("expected="+ img.getAttribute("data-letter") +"&delete="+index);
+		}
+		
 		var el = document.getElementById('c'),
 		ctx = el.getContext('2d'),
 		miniCanvas =document.createElement('canvas'),
@@ -111,7 +134,11 @@ createPaths(["./.cache/img"]);
 					if (xhr.readyState == 4) {
 						switch (xhr.status) {
 							case 201:
-								var img = document.createElement("img"); 
+								var img = document.createElement("img");
+								img.setAttribute("data-letter", letterExpected);
+								img.onclick=function(e){
+									deleteDataSet(this);
+								};
 								result.appendChild(img);
 								img.src=xhr.responseText;
 								console.log("created");
@@ -125,7 +152,6 @@ createPaths(["./.cache/img"]);
 					}
 				};
 
-				console.log(letterExpected);
 				xhr.open("POST", "./api/save.php", true);
 				xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 				xhr.send("expected="+letterExpected+"&input="+matrix);
