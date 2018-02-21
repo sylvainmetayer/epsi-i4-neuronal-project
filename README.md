@@ -1,8 +1,6 @@
 # Demo
 ![Demo](https://user-images.githubusercontent.com/24396178/36469308-199aa730-16e7-11e8-8f11-c0c12f13c3de.gif)
 
-![iPad Demo](https://user-images.githubusercontent.com/24396178/36469308-199aa730-16e7-11e8-8f11-c0c12f13c3de.gif)
-
 ## Requirements
 
 * PHP 7 or later
