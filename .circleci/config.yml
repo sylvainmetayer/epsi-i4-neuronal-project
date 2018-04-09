@@ -1,0 +1,18 @@
+version: 2
+jobs:
+    build:
+        docker:
+            - image: php:7.1
+        steps:
+            - checkout
+            - run:
+                name: install-dependencies
+                command: composer install
+            - run:
+                name: tests
+                command: composer run test
+workflows:
+    version: 2
+    build:
+        jobs:
+            - build
