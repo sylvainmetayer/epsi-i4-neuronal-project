@@ -1,4 +1,7 @@
-# Demo
+# Machine Learning
+
+[![CircleCI](https://circleci.com/gh/BinomeEPSI/machine-learning.svg?style=svg)](https://circleci.com/gh/BinomeEPSI/machine-learning)
+
 ![Demo](https://user-images.githubusercontent.com/24396178/36469308-199aa730-16e7-11e8-8f11-c0c12f13c3de.gif)
 
 ## Requirements
