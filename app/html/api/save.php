@@ -18,7 +18,7 @@ if(isset($_POST['expected'])) {
 			
 			array_push($gameset, $_POST['input']);
 			file_put_contents($saveFile, implode("\n", $gameset));
-			echo './.cache/img/'.makeImage($_POST['input']).'.jpg';
+			echo './.cache/img/'.makeImage($_POST['input']).'.png';
 			
 		} else {
 			http_response_code(200);

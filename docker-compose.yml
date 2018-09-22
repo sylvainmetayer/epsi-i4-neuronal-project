@@ -1,0 +1,19 @@
+version: "3.1"
+
+services:
+  ml-installer:
+    container_name: ml-installer
+    build: ".docker/."
+    volumes:
+      - ./app:/var/www/
+    command: composer install
+
+  machine-learning:
+    container_name: machine-learning
+    build: ".docker/."
+    depends_on:
+      - "ml-installer"
+    volumes:
+      - ./app:/var/www/
+    ports:
+      - "8080:80"

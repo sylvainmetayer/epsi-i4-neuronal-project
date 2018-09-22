@@ -28,13 +28,16 @@
 		],
         "deploy": [
             "./deploy.sh"
-        ]
+		],
+		"build" : [
+			"docker build .docker/."
+		]
 	},
 	"autoload": {
 		"psr-4": {
-			"NeuralNetwork\\": "src/NeuralNetwork",
-			"MLException\\": "src/Exceptions/",
-			"Utils\\": "src/Utils"
+			"NeuralNetwork\\": "app/src/NeuralNetwork",
+			"MLException\\": "app/src/Exceptions/",
+			"Utils\\": "app/src/Utils"
 		}
 	},
 	"autoload-dev": {

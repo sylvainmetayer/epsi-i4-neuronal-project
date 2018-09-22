@@ -2,7 +2,7 @@
 function createPaths(array $paths){
 	foreach ($paths as $path) {
 		if(!file_exists($path)){
-			@mkdir($path, 0777, true);
+			mkdir($path, 0777, true);
 		}
 	}
 }
@@ -24,7 +24,7 @@ function makeImage($str){
 
 	$name = uniqid();
 
-	imagejpeg($img,__DIR__ . "/../.cache/img/$name.jpg");
+	imagepng($img,__DIR__ . "/../.cache/img/$name.png");
 
 	return $name;
 }
