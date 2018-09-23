@@ -6,28 +6,36 @@ require 'func.inc.php';
 
 createPaths(["../.cache/img","../.cache/gameset"]);
 
-if(isset($_POST['expected'])) {
-	$saveFile = "../.cache/gameset/".$_POST['expected'];
+if(isset($_POST['expected']) && preg_match("#^[a-z0-9]*$#i", $_POST['expected'])  ) {
 
-	if(!empty($_POST['input'])){
+	$expectedChain = $_POST['expected'];
+	
+	$saveFile = "../.cache/gameset/$expectedChain";
+
+	if(isset($_POST['input']) && preg_match("#^(0|1){256}$#", $_POST['input'])){
+
+		$inputChain = $_POST['input'];
 		
 		$gameset = file_exists($saveFile) ? explode("\n", file_get_contents($saveFile)) : [];
 
-		if(!in_array($_POST['input'],$gameset)){
+		if(!in_array($inputChain,$gameset)){
 			http_response_code(201);
 			
-			array_push($gameset, $_POST['input']);
+			array_push($gameset, $inputChain);
 			file_put_contents($saveFile, implode("\n", $gameset));
-			echo './.cache/img/'.makeImage($_POST['input']).'.png';
+			echo './.cache/img/'.makeImage($inputChain).'.png';
 			
 		} else {
 			http_response_code(200);
 		}
 	}
 	
-	if(!empty($_POST['delete']) && file_exists($saveFile)){
+	if(!empty($_POST['delete']) && preg_match("#^[0-9]*$#i", $_POST['delete']) && file_exists($saveFile)){
+		
+		$deleteItem = $_POST['delete'];
+
 		$gameset = explode("\n", file_get_contents($saveFile));
-		unset( $gameset[$_POST['delete']]);
+		unset( $gameset[$deleteItem]);
 		file_put_contents($saveFile, implode("\n", $gameset));
 
 		http_response_code(200);
