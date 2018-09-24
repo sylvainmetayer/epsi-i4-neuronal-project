@@ -7,11 +7,21 @@
 ## Requirements
 
 * Docker & docker-compose
-* PHP 7 or later
-* `composer` command (See [Composer Installation](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx))
 * Git
 
 # Run it
+
+## Setup
+
+Clone and install project.
+
+`$ make install`
+
+To launch draw tools, type  :
+
+`$ make up `
+
+and go to "http://localhost:8080"
 
 ## Basic prototype
 
@@ -23,10 +33,6 @@ To run basic prototype (exercise requirement)
 
 ### Basic usage
 
-To run the Draw tools, run 
-
-`$ docker-compose up --build`
-
-and go to "http://localhost:8080/draw.php"
+Go to "http://localhost:8080/draw.php"
 
 Make your dataset with graphical tool.

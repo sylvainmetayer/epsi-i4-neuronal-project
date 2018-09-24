@@ -1,13 +1,7 @@
-FROM php:7.2-apache
+FROM ml-dist
 
-# see https://stackoverflow.com/a/36908278
-RUN usermod -u 1000 www-data
-
-RUN apt-get update && apt-get install -y \
-        libpng-dev \
+RUN apt-get install -y \
         git subversion mercurial bash patch
-
-RUN docker-php-ext-install gd && docker-php-ext-enable gd
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME /tmp
@@ -27,4 +21,4 @@ RUN curl --silent --fail --location --retry 3 --output /tmp/installer.php --url 
         && rm -rf /tmp/* /tmp/.htaccess
 
 
-WORKDIR /var/www/
+ENV ENVIRONMENT INSTALLER
