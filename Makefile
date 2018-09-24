@@ -19,3 +19,6 @@ stop:
 
 restart:
 	docker-compose restart
+
+test:
+	docker exec -it ml-tester composer test

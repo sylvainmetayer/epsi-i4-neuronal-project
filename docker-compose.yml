@@ -7,6 +7,12 @@ services:
     volumes:
       - ./app:/var/www/
     command: composer install
+  
+  ml-tester:
+    container_name: ml-tester
+    image: ml-install
+    volumes:
+      - ./app:/var/www/
 
   ml-dev:
     container_name: ml-dev
