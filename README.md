@@ -8,6 +8,7 @@
 
 * Docker & docker-compose
 * Git
+* make
 
 # Run it
 
@@ -21,7 +22,7 @@ To launch draw tools, type  :
 
 `$ make up `
 
-and go to "http://localhost:8080"
+and go to `http://localhost:8080`
 
 ## Basic prototype
 
