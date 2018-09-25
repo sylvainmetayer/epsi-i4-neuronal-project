@@ -1,69 +1,26 @@
 version: 2
 jobs:
   build:
-    working_directory: /app
     docker:
-    - image: docker:17.05.0-ce-git
+      - image: php:alpine
+      - image: php:7.2
     steps:
-    - checkout
-    - setup_remote_docker
-    - run:
-        name: Install make
-        command: apk add --no-cache make
-    - restore_cache:
-      keys:
-      - v1-{{ .Branch }}
-      paths:
-      - /caches/ml-dev.tar
-      - /caches/ml-dist.tar
-      - /caches/ml-install.tar
-    - run:
-      name: Load Docker image layer cache
-      command: |
-        set +o pipefail
-        docker load -i /caches/ml-install.tar | true
-        docker load -i /caches/ml-dist.tar | true
-        docker load -i /caches/ml-dev.tar | true
-    - run:
-        name: Build images
-        command: |
-          docker build --cache-from=ml-dist -t ml-dist .docker/dist
-          docker build --cache-from=ml-install -t ml-install .docker/install
-          docker build --cache-from=ml-dev -t ml-dev .docker/dev
-    - run:
-      name: Save Docker image layer cache
-      command: |
-        mkdir -p /caches
-        docker save -o /caches/ml-dist.tar ml-dist
-        docker save -o /caches/ml-install.tar ml-install
-        docker save -o /caches/ml-dev.tar ml-dev
-    - run:
-        name: Run tests
-        command: make test
-    - save_cache:
-      key: v1-{{ .Branch }}-{{ epoch }}
-      paths:
-      - /caches/ml-dev.tar
-      - /caches/ml-dist.tar
-      - /caches/ml-install.tar
-#version: 2
-#jobs:
-#  build:
-#    docker:
-#    - image: php:alpine
-#    steps:
-#    - checkout
-#    - run: make install
-#  test:
-#    docker:
-#    - image: ml-tester
-#    steps:
-#    - run: composer run test
-#workflows:
-#  version: 2
-#  build:
-#    jobs:
-#    - build
-#    - test
-#
-#
+      - checkout
+      - run: php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+      - run: php composer-setup.php
+      - run: php -r "unlink('composer-setup.php');"
+      - run: php composer.phar self-update
+      - run: mv composer.phar /usr/local/bin/composer
+      - run: apk add --no-cache libpng-dev git
+      - run: docker-php-ext-install gd
+      - run:
+          name: install-dependencies
+          command: composer install -d app
+      - run:
+          name: tests
+          command: composer run test -d app
+workflows:
+  version: 2
+  build:
+    jobs:
+    - build
