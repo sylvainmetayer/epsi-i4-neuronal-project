@@ -4,7 +4,7 @@ require './api/func.inc.php';
 if(file_exists('./.cache/img')){
 	exec("rm -r ./.cache/img");
 }
-createPaths(["./.cache/img"]);
+createPaths(["./.cache/img", "./.cache/gameset"]);
 ?><!DOCTYPE html>
 <html>
 <head>
@@ -37,7 +37,7 @@ createPaths(["./.cache/img"]);
 
 		foreach ($gamesets as $gameset) {
 			$name = makeImage($gameset);
-			echo "<img src=\"./.cache/img/$name.jpg\"  data-letter=\"$letter\"onclick=\"deleteDataSet(this)\" >";
+			echo "<img src=\"./.cache/img/$name.png\"  data-letter=\"$letter\"onclick=\"deleteDataSet(this)\" >";
 			
 		}
 

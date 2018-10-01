@@ -11,10 +11,12 @@ use NeuralNetwork\Trainnig;
 
 $network = Network::load('../.cache/network.save');
 
-if (!empty($_POST['input'])) {
+if(isset($_POST['input']) && preg_match("#^(0|1){256}$#", $_POST['input'])){
+
+	$inputChain = $_POST['input'];
 
 	$letters = array_slice(scandir('../.cache/gameset'), 2);
-	$bin = $network->answer(str_split($_POST['input']));
+	$bin = $network->answer(str_split($inputChain));
 	$index = bindec($bin);
 
 	echo isset($letters[$index]) ? $letters[$index] : '🤔';

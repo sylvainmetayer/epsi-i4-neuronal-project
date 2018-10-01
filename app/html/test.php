@@ -37,7 +37,7 @@ foreach ($letters as $key => $letter) {
 
 	foreach ($gamesets as $gameset) {
 		$name = makeImage($gameset);
-		echo "<img src=\"./.cache/img/$name.jpg\">";
+		echo "<img src=\"./.cache/img/$name.png\">";
 		
 	}
 

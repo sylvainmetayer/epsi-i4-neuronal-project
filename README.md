@@ -6,44 +6,34 @@
 
 ## Requirements
 
-* PHP 7 or later
-* `composer` command (See [Composer Installation](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx))
+* Docker & docker-compose
 * Git
+* make
 
 # Run it
+
+## Setup
+
+Clone and install project.
+
+`$ make install`
+
+To launch draw tools, type  :
+
+`$ make up `
+
+and go to `http://localhost:8080`
 
 ## Basic prototype
 
 To run basic prototype (exercise requirement)
 
-`$ php neurons.php`
+`$ php app/neurons.php`
 
 ## Local server tools
 
 ### Basic usage
 
-To run the Draw tools, run 
-
-`$ php -S localhost:8000  -t ./tools/`
-
-and go to "http://localhost:8000/draw.php"
+Go to "http://localhost:8080/draw.php"
 
 Make your dataset with graphical tool.
-
-And type the command below to train the bot with the dataset previously created: 
-
-`$ php ./tools/trainning.php`
-
-Finaly, you can reload php server 
-
-`$ php -S localhost:8000  -t ./tools/`
-
-and go to "http://localhost:8000/test.php"
-
-# Deploy
-
-```bash
-cp .env.bash.sample .env.bash
-vim .env.bash # Fill values
-composer deploy
-```
