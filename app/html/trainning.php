@@ -1,3 +1,4 @@
+<pre>
 <?php
 
 require __DIR__ .'/../vendor/autoload.php';
@@ -17,7 +18,7 @@ $examples = new ExampleSet($nBits, 256);
 
 $test = [];
 
-echo "\n\033[32mTrainnig for dataset :  \033[0m \n\n";
+echo "\nTrainnig for dataset : \n\n";
 
 foreach ($letters as $key => $letter) {
 
@@ -39,7 +40,7 @@ foreach ($letters as $key => $letter) {
 }
 
 
-echo "\033[32mTrainning begin, please wait ... \033[0m \n";
+echo "Trainning begin, please wait ... \n";
 
 
 $trainnig = new Trainnig($examples);
@@ -50,10 +51,12 @@ for ($i=0,  $successRate=0; $i < 10000; $i++) {
 }
 
 
-echo "\n\033[32mTrainning is over : \033[0m \n\n";
+echo "Trainning is over : \n\n";
 
 
 $trainnig->test($test, $network);
 
 $network->save(__DIR__."/.cache/network.save");
 
+?>
+</pre>
