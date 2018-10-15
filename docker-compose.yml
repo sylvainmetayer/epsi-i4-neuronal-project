@@ -1,0 +1,25 @@
+version: "3.1"
+
+services:
+  ml-install:
+    container_name: ml-install
+    image: ml-install
+    volumes:
+      - ./app:/var/www/
+    command: composer install
+  
+  ml-tester:
+    container_name: ml-tester
+    image: ml-install
+    volumes:
+      - ./app:/var/www/
+
+  ml-dev:
+    container_name: ml-dev
+    image: ml-dev
+    depends_on:
+      - "ml-install"
+    volumes:
+      - ./app:/var/www/
+    ports:
+      - "8080:80"

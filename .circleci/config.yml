@@ -1,0 +1,26 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: php:alpine
+      - image: php:7.2
+    steps:
+      - checkout
+      - run: php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+      - run: php composer-setup.php
+      - run: php -r "unlink('composer-setup.php');"
+      - run: php composer.phar self-update
+      - run: mv composer.phar /usr/local/bin/composer
+      - run: apk add --no-cache libpng-dev git
+      - run: docker-php-ext-install gd
+      - run:
+          name: install-dependencies
+          command: composer install -d app
+      - run:
+          name: tests
+          command: composer run test -d app
+workflows:
+  version: 2
+  build:
+    jobs:
+    - build

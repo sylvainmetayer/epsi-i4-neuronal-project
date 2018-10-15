@@ -1,6 +1,11 @@
 <?php
 
-require 'classes.php';
+require 'vendor/autoload.php';
+
+use NeuralNetwork\Network;
+use NeuralNetwork\ExampleSet;
+use NeuralNetwork\Example;
+use NeuralNetwork\Trainnig;
 
 $network = new Network(3,15);
 $examples = new ExampleSet(3, 15);
@@ -12,10 +17,12 @@ foreach ($letters as $key => $value) {
 $trainnig = new Trainnig($examples);
 
 $network->print();
-$trainnig->run($network, 100);
 
-if(isset($argv) && !empty($argv[1])){
-	$network->save($argv[1]);
+for ($i=0,  $successRate=0; $i < 100 && $successRate < 100; $i++) {
+
+	$successRate = $trainnig->runWorkout($network);
+	
+	echo "$successRate % \n";
 }
 
 $trainnig->test($letters, $network);

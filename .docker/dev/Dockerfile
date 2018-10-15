@@ -1,0 +1,3 @@
+FROM ml-dist
+
+ENV ENVIRONMENT DEV
