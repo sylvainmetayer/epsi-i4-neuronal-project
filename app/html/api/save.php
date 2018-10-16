@@ -18,16 +18,22 @@ if(isset($_POST['expected']) && preg_match("#^[a-z0-9]*$#i", $_POST['expected'])
 		
 		$gameset = file_exists($saveFile) ? explode("\n", file_get_contents($saveFile)) : [];
 
-		if(!in_array($inputChain,$gameset)){
-			http_response_code(201);
-			
-			array_push($gameset, $inputChain);
-			file_put_contents($saveFile, implode("\n", $gameset));
-			echo './.cache/img/'.makeImage($inputChain).'.png';
-			
+		if(!file_exists($saveFile) && count(scandir("../.cache/gameset"))-2 >= 4 ) {
+			http_response_code(423);
 		} else {
-			http_response_code(200);
+			if(!in_array($inputChain,$gameset) && count($gameset) < 5){
+				http_response_code(201);
+				
+				array_push($gameset, $inputChain);
+				file_put_contents($saveFile, implode("\n", $gameset));
+				echo './.cache/img/'.makeImage($inputChain).'.png';
+				
+			} else {
+				http_response_code(200);
+			}
 		}
+
+	
 	}
 	
 	if(!empty($_POST['delete']) && preg_match("#^[0-9]*$#i", $_POST['delete']) && file_exists($saveFile)){
