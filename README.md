@@ -1,6 +1,6 @@
 # Machine Learning
 
-[![CircleCI](https://circleci.com/gh/BinomeEPSI/machine-learning.svg?style=svg)](https://circleci.com/gh/BinomeEPSI/machine-learning)
+[![CircleCI](https://circleci.com/gh/EPSIBordeaux/machine-learning.svg?style=svg)](https://circleci.com/gh/EPSIBordeaux/machine-learning)
 
 ![Demo](https://user-images.githubusercontent.com/24396178/36469308-199aa730-16e7-11e8-8f11-c0c12f13c3de.gif)
 
@@ -10,9 +10,9 @@
 * Git
 * make
 
-# Run it
+## Run it
 
-## Setup
+### Setup
 
 Clone and install project.
 
@@ -20,7 +20,7 @@ Clone and install project.
 
 To launch draw tools, type  :
 
-`$ make up `
+`$ make up`
 
 and go to `http://localhost:8080`
 
@@ -34,6 +34,6 @@ To run basic prototype (exercise requirement)
 
 ### Basic usage
 
-Go to "http://localhost:8080/draw.php"
+Go to [http://localhost:8080/draw.php](http://localhost:8080/draw.php)
 
 Make your dataset with graphical tool.
