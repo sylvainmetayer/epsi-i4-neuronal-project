@@ -11,7 +11,7 @@ __pycache__/
 env/
 build/
 develop-eggs/
-dist/
+./dist/
 downloads/
 eggs/
 .eggs/
@@ -154,5 +154,11 @@ fabric.properties
 
 # Sonarlint plugin
 .idea/sonarlint
+
+app/vendor/
+
+app/network.save
+app/html/gameset
+app/html/img
 
 # End of https://www.gitignore.io/api/intellij
