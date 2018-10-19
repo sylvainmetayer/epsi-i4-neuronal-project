@@ -1,3 +1,3 @@
-FROM ml-dist
+FROM ml-prod
 
 ENV ENVIRONMENT DEV

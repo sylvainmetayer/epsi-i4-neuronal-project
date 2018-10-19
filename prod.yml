@@ -1,11 +1,12 @@
 version: "3.1"
 
 services:  
-  ml-prod:
+  machine-learning:
     container_name: ml-prod
+    image: ml-prod
     build:
       context: .
-      dockerfile: .docker/dist/Dockerfile
+      dockerfile: .docker/prod/Dockerfile
     ports:
       - "3006:80"
 

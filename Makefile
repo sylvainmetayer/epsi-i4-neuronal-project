@@ -1,7 +1,7 @@
 all: install
 
 install:
-	docker build -t ml-dist .docker/dist
+	docker-compose -f prod.yml build
 	docker build -t ml-install .docker/install
 	docker build -t ml-dev .docker/dev
 
@@ -26,15 +26,12 @@ test:
 prod: 
 	docker-compose -f prod.yml up --build
 clean:
-	docker stop ml-dist || true
 	docker stop ml-prod || true
 	docker stop ml-install || true
 	docker stop ml-dev || true
-	docker rm ml-dist || true
 	docker rm ml-prod || true
 	docker rm ml-install || true
 	docker rm ml-dev || true
-	docker rmi ml-dist || true
-	docker rmi ml-install || true
-	docker rmi ml-dev || true
-	docker rmi ml-prod || true
+	docker rmi ml-install -f || true
+	docker rmi ml-dev -f  || true
+	docker rmi ml-prod -f || true

@@ -1,4 +1,4 @@
-FROM ml-dist
+FROM ml-prod
 
 RUN apt-get install -y \
         git subversion mercurial bash patch
