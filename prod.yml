@@ -1,19 +1,9 @@
 version: "3.1"
 
-services:
-  ml-install:
-    container_name: ml-install
-    image: ml-install
-    volumes:
-      - ./app:/var/www/
-    command: composer install --no-dev
-  
-  ml-dist:
-    container_name: ml-dist
-    image: ml-dist
-    depends_on:
-      - "ml-install"
-    volumes:
-      - ./app:/var/www/
+services:  
+  ml-prod:
+    container_name: ml-prod
+    build: .
     ports:
-      - "127.0.0.1:3006:80"
+      - "3006:80"
+
