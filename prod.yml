@@ -3,7 +3,9 @@ version: "3.1"
 services:  
   ml-prod:
     container_name: ml-prod
-    build: .
+    build:
+      context: .
+      dockerfile: .docker/dist/Dockerfile
     ports:
       - "3006:80"
 
